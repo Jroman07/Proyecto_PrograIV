@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_PrograIV.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
 namespace Proyecto_Final_PrograIV.Services.CandidateServices
@@ -37,7 +38,7 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         public List<Candidate> GetAllCandidates()
         {
-            return _dbContext.Candidates.ToList();
+            return _dbContext.Candidates.Include(c => c.Skills).ToList();
         }
 
         public Candidate GetCandidateById(int Id)

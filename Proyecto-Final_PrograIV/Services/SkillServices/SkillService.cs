@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_PrograIV.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
 namespace Proyecto_Final_PrograIV.Services.SkillsServices
@@ -12,7 +13,8 @@ namespace Proyecto_Final_PrograIV.Services.SkillsServices
         }
         public List<Skill> GetSkills()
         {
-            return _dbContext.Skills.ToList();
+
+            return _dbContext.Skills.Include(s => s.Candidate).ToList();
         }
         public Skill AddSkill(Skill skill)
         {
