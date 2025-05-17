@@ -9,10 +9,10 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         private readonly ICompanyService _companyService;
-        public CompanyController(ICompanyService companyService) { 
+        public CompaniesController(ICompanyService companyService) { 
             _companyService = companyService;
         }
         // GET: api/<CompanyController>
