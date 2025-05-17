@@ -52,6 +52,12 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 .HasOne(co => co.Offer)
                 .WithMany(o => o.CandidateOffers)
                 .HasForeignKey(co => co.OfferId);
+
+            // Candidate 1 - * Skill
+            modelBuilder.Entity<Skill>()
+                .HasOne(o => o.Candidate)
+                .WithMany(c => c.Skills)
+                .HasForeignKey(o => o.CandidateId);
         }
 
 
