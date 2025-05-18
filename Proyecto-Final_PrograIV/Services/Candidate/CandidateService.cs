@@ -65,6 +65,18 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         }
 
+        public List<Offer> GetOffersByCandidate(int Id)
+        {
+            List<Offer> offers = _dbContext.Candidates
+                .Include(c => c.CandidateOffers)
+                .ThenInclude(co => co.Offer)
+                .Where(c => c.CandidateId == Id)
+                .SelectMany(c => c.CandidateOffers.Select(co => co.Offer))
+                .ToList();
+
+            return offers;
+        }
+
         public Candidate UpdateCandidate(int Id, Candidate candidate)
         {
             Candidate updateCandidate = _dbContext.Candidates.Find(Id);
