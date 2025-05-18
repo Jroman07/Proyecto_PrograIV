@@ -38,7 +38,7 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         public List<Candidate> GetAllCandidates()
         {
-            return _dbContext.Candidates.Include(c => c.Skills).ToList();
+            return _dbContext.Candidates.ToList();
         }
 
         public Candidate GetCandidateById(int Id)

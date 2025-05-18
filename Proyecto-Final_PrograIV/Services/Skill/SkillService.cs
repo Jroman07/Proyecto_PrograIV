@@ -14,7 +14,7 @@ namespace Proyecto_Final_PrograIV.Services.SkillsServices
         public List<Skill> GetSkills()
         {
 
-            return _dbContext.Skills.Include(s => s.Candidate).ToList();
+            return _dbContext.Skills.ToList();
         }
         public Skill AddSkill(Skill skill)
         {
