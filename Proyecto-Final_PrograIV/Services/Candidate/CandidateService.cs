@@ -71,8 +71,8 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
             if (updateCandidate != null)
             {
                 updateCandidate.Name = candidate.Name;
-                updateCandidate.FirstSurname = candidate.FirstSurname;
-                updateCandidate.SecondSurname = candidate.SecondSurname;
+                updateCandidate.Surname1 = candidate.Surname1;
+                updateCandidate.Surname2 = candidate.Surname2;
                 updateCandidate.Email = candidate.Email;
                 updateCandidate.Password = candidate.Password;
                 _dbContext.SaveChanges();

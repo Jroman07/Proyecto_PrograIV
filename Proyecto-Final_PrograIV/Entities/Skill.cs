@@ -4,11 +4,12 @@ namespace Proyecto_Final_PrograIV.Entities
 {
     public class Skill
     {
+        [JsonIgnore]
         public int SkillId{get; set;}
         public int CandidateId { get; set; }
         public string Name {get; set;}
 
-        //[JsonIgnore]
+        [JsonIgnore]
         public Candidate? Candidate { get; set; }
         [JsonIgnore]
         public IList<OfferSkill>? OfferSkills { get; set; }
