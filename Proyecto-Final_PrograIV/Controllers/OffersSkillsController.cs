@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services;
 
@@ -19,33 +23,39 @@ namespace Proyecto_Final_PrograIV.Controllers
             _offerSkillService = offerSkillService;
         }
 
-        // GET
-        [HttpGet("skills-by-offer/{offerId}")]
-        public List<Skill> GetSkillsByOffer(int offerId)
+        [HttpGet]
+        public IEnumerable<OfferSkill> Get()
         {
-            return _offerSkillService.GetSkillsByOffer(offerId);
+            return _offerSkillService.GetAllOfferSkills();
         }
 
-        // GET
-        [HttpGet("offers-by-skill/{skillId}")]
-        public List<Offer> GetOffersBySkill(int skillId)
+        // GET api/<CandidatesController>/5
+        [HttpGet("{id}")]
+        public OfferSkill Get(int id)
         {
-            return _offerSkillService.GetOffersBySkill(skillId);
+            return _offerSkillService.GetOfferSkillsById(id);
         }
 
-        // POST
+        // POST api/<CandidatesController>
         [HttpPost]
-        public IActionResult Post([FromQuery] int offerId, [FromQuery] int skillId)
+        public OfferSkill Post([FromBody] OfferSkill offerSkill)
         {
-            _offerSkillService.AddSkillToOffer(offerId, skillId);
-            return Ok("Skill assigned to offer successfully");
+            return _offerSkillService.AddOfferSkill(offerSkill);
         }
 
-        // DELETE
-        [HttpDelete]
-        public void Delete([FromQuery] int offerId, [FromQuery] int skillId)
+        // PUT api/<CandidatesController>/5
+        [HttpPut("{id}")]
+        public OfferSkill Put(int id, [FromBody] OfferSkill offerSkill)
         {
-            _offerSkillService.RemoveSkillFromOffer(offerId, skillId);
+            return _offerSkillService.UpdateOfferSkill(id, offerSkill);
         }
+
+        // DELETE api/<CandidatesController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _offerSkillService.DeleteOfferSkill(id);
+        }
+
     }
 }

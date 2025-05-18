@@ -12,52 +12,59 @@ namespace Proyecto_Final_PrograIV.Services
             _dbContext = dbContext;
         }
 
-        public void AddSkillToOffer(int offerId, int skillId)
+        public OfferSkill AddOfferSkill(OfferSkill offerSkill)
         {
-            OfferSkill newRelation = new OfferSkill
-            {
-                OfferId = offerId,
-                SkillId = skillId
-            };
-
-            _dbContext.OfferSkills.Add(newRelation);
+            _dbContext.OfferSkills.Add(offerSkill);
             _dbContext.SaveChanges();
+
+            return offerSkill;
         }
 
-        public void RemoveSkillFromOffer(int offerId, int skillId)
+        public void DeleteOfferSkill(int Id)
         {
-            OfferSkill? existingRelation = _dbContext.OfferSkills
-                .FirstOrDefault(os => os.OfferId == offerId && os.SkillId == skillId);
-
-            if (existingRelation != null)
+            OfferSkill DeleteOfferSkill = _dbContext.OfferSkills.Find(Id);
+            if (DeleteOfferSkill != null)
             {
-                _dbContext.OfferSkills.Remove(existingRelation);
+                _dbContext.OfferSkills.Remove(DeleteOfferSkill);
+
                 _dbContext.SaveChanges();
             }
             else
             {
-                throw new Exception("Relation between Offer and Skill not found");
+                throw new Exception("Candidate not found");
             }
         }
 
-        public List<Skill> GetSkillsByOffer(int offerId)
+        public List<OfferSkill> GetAllOfferSkills()
         {
-            List<Skill> skills = _dbContext.OfferSkills
-                .Where(os => os.OfferId == offerId)
-                .Select(os => os.Skill)
-                .ToList();
-
-            return skills;
+            return _dbContext.OfferSkills.ToList();
         }
 
-        public List<Offer> GetOffersBySkill(int skillId)
+        public OfferSkill GetOfferSkillsById(int Id)
         {
-            List<Offer> offers = _dbContext.OfferSkills
-                .Where(os => os.SkillId == skillId)
-                .Select(os => os.Offer)
-                .ToList();
+            OfferSkill offerSkill = _dbContext.OfferSkills.Find(Id);
+            if (offerSkill == null)
+            {
+                throw new Exception("Candidate not found");
+            }
+            return offerSkill;
+        }
 
-            return offers;
+        public OfferSkill UpdateOfferSkill(int Id, OfferSkill offerSkill)
+        {
+            OfferSkill updateOfferSkill = _dbContext.OfferSkills.Find(Id);
+            if (updateOfferSkill != null)
+            {
+                updateOfferSkill.OfferId = offerSkill.OfferId;
+                updateOfferSkill.SkillId = offerSkill.SkillId;
+                _dbContext.SaveChanges();
+                return updateOfferSkill;
+
+            }
+            else
+            {
+                throw new Exception("Candidate not found");
+            }
         }
     }
 }
