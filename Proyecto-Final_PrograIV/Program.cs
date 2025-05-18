@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 using Proyecto_Final_PrograIV.Model.Auth.Service;
 using Proyecto_Final_PrograIV.Services;
