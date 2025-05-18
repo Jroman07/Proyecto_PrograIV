@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
+using Proyecto_Final_PrograIV.Model.Auth.Service;
 using Proyecto_Final_PrograIV.Services;
 using Proyecto_Final_PrograIV.Services.CandiadateSkillService;
 using Proyecto_Final_PrograIV.Services.Candidateoffer;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IOfferService, OfferService>();
 builder.Services.AddScoped<IOfferSkillService, OfferSkillService>();
 builder.Services.AddScoped<ICandidateSkillService, CandidateSkillService>();
 builder.Services.AddScoped<ICandidateOfferService, CandidateOfferService>();
+builder.Services.AddScoped<ISvAuth,SvAuth>();
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(x =>
