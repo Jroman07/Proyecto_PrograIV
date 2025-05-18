@@ -4,6 +4,8 @@ namespace Proyecto_Final_PrograIV.Entities
 {
     public class CandidateSkill
     {
+        [JsonIgnore]
+        public int CandidateSkillId { get; set; }
         public int CandidateId { get; set; }
         [JsonIgnore]
         public Candidate? Candidate { get; set; }

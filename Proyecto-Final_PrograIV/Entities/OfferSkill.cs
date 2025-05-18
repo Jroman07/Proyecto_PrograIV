@@ -5,7 +5,8 @@ namespace Proyecto_Final_PrograIV.Entities
 {
     public class OfferSkill
     {
-        
+        [JsonIgnore]
+        public int OfferSkillId { get; set; }
         public int OfferId { get; set; }
         [JsonIgnore]
         public Offer? Offer {get; set;}
