@@ -4,9 +4,10 @@ namespace Proyecto_Final_PrograIV.Services
 {
     public interface IOfferSkillService
     {
-        void AddSkillToOffer(int offerId, int skillId);
-        void RemoveSkillFromOffer(int offerId, int skillId);
-        List<Skill> GetSkillsByOffer(int offerId);
-        List<Offer> GetOffersBySkill(int skillId);
+        public List<OfferSkill> GetAllOfferSkills();
+        public OfferSkill GetOfferSkillsById(int Id);
+        public OfferSkill AddOfferSkill(OfferSkill offerSkill);
+        public OfferSkill UpdateOfferSkill(int Id, OfferSkill offerSkill);
+        public void DeleteOfferSkill(int Id);
     }
 }
