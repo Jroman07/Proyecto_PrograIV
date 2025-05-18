@@ -17,11 +17,11 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
         public DbSet<OfferSkill> OfferSkills { get; set; }
         public DbSet<CandidateOffer> CandidateOffers { get; set; }
         public DbSet<CandidateSkill> CandidateSkill { get; set; }
-
         public DbSet<CandidateOffer> CandidateOffer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             // Company 1 - * Offer
             modelBuilder.Entity<Offer>()
                 .HasOne(o => o.Company)

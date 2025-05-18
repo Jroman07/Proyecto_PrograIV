@@ -8,10 +8,10 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidateOfferController : ControllerBase
+    public class CandidateOffersController : ControllerBase
     {
         private readonly ICandidateOfferService _CandidateOfferService;
-        public CandidateOfferController(ICandidateOfferService candidateOfferService)
+        public CandidateOffersController(ICandidateOfferService candidateOfferService)
         {
             _CandidateOfferService = candidateOfferService;
         }

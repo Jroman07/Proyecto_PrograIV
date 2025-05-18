@@ -9,10 +9,10 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidateSkillController : ControllerBase
+    public class CandidateSkillsController : ControllerBase
     {
         private readonly ICandidateSkillService _CandidateSkillService;
-        public CandidateSkillController(ICandidateSkillService candidateSkillService)
+        public CandidateSkillsController(ICandidateSkillService candidateSkillService)
         {
             _CandidateSkillService = candidateSkillService;
         }

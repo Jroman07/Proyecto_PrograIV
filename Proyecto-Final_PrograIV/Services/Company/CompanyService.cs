@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_PrograIV.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
 namespace Proyecto_Final_PrograIV.Services.CompanyService
@@ -35,7 +36,7 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
 
         public List<Company> GetAllCompanies()
         {
-            return _dbContext.Companies.ToList();
+            return _dbContext.Companies.Include(x => x.Offers).ToList();
         }
 
         public List<Company> GetCompanyByName(string companyName)

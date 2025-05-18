@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
@@ -40,7 +41,7 @@ namespace Proyecto_Final_PrograIV.Services
 
         public List<Offer> GetallOffers()
         {
-            return _dbContext.Offers.ToList();
+            return _dbContext.Offers.Include(x => x.Company).ToList();
         } // mostrar todos
 
         public Offer GetOfferById(int Id)
