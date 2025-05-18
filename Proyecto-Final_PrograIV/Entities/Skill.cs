@@ -10,9 +10,9 @@ namespace Proyecto_Final_PrograIV.Entities
         public string Name {get; set;}
 
         [JsonIgnore]
-        public Candidate? Candidate { get; set; }
+        public List<CandidateSkill> CandidateSkills { get; set; }
         [JsonIgnore]
-        public IList<OfferSkill>? OfferSkills { get; set; }
+        public List<OfferSkill>? OfferSkills { get; set; }
 
     }
 }

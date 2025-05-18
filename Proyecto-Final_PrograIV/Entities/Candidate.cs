@@ -15,6 +15,6 @@ namespace Proyecto_Final_PrograIV.Entities
         [JsonIgnore]
         public List<CandidateOffer>? CandidateOffers { get; set; }
         [JsonIgnore]
-        public List<Skill>? Skills { get; set; }
+        public List<CandidateSkill>? CandidateSkills { get; set; }
     }
 }
