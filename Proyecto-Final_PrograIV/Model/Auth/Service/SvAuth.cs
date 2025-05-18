@@ -40,14 +40,21 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
             if(auth.Email != null && auth.Password != null)
             {
                 Candidate Data = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
-
-                if (Data.Password != auth.Password)
+                if (Data == null)
                 {
-                    return null;
+                    
+                    return null; 
                 }
                 else
                 {
-                    return GenerateJwtToken(auth);
+                    if (Data.Password != auth.Password)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return GenerateJwtToken(auth);
+                    }
                 }
             }
             return null;
