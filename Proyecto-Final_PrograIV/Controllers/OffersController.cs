@@ -33,6 +33,12 @@ namespace Proyecto_Final_PrograIV.Controllers
             return _OfferService.GetOfferById(id);
         }
 
+        [HttpGet("Candidate{id}")]
+        public IEnumerable<Offer> GetOffers(int id)
+        {
+            return _OfferService.GetOffersByCandidate(id);
+        }
+
         [HttpGet("search")]
         public IEnumerable<Offer> Get([FromQuery] string? name)
         {

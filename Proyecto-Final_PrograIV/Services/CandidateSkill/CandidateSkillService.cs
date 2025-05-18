@@ -16,18 +16,18 @@ namespace Proyecto_Final_PrograIV.Services.CandiadateSkillService
             }
             public CandidateSkill AddCandidateSkill(CandidateSkill candidateSkill)
             {
-                _dbContext.CandidateSkill.Add(candidateSkill);
+                _dbContext.CandidateSkills.Add(candidateSkill);
                 _dbContext.SaveChanges();
 
                 return candidateSkill;
             }
             public void DeleteCandidateSkillById(int id)
             {
-                CandidateSkill DeleteCandiadateSkill = _dbContext.CandidateSkill.Find(id);
+                CandidateSkill DeleteCandiadateSkill = _dbContext.CandidateSkills.Find(id);
 
                 if (DeleteCandiadateSkill != null)
                 {
-                    _dbContext.CandidateSkill.Remove(DeleteCandiadateSkill);
+                    _dbContext.CandidateSkills.Remove(DeleteCandiadateSkill);
                     _dbContext.SaveChanges();
                 }
                 else
@@ -38,12 +38,12 @@ namespace Proyecto_Final_PrograIV.Services.CandiadateSkillService
 
             public List<CandidateSkill> GetAllCandidateSkills()
             {
-                return _dbContext.CandidateSkill.Include(x => x.Candidate).Include(x => x.Skill).ToList();
+                return _dbContext.CandidateSkills.Include(x => x.Candidate).Include(x => x.Skill).ToList();
             }
 
             public CandidateSkill GetCandidateSkillById(int id)
             {
-                CandidateSkill candidateSkill = _dbContext.CandidateSkill.Find(id);
+                CandidateSkill candidateSkill = _dbContext.CandidateSkills.Find(id);
 
                 if (candidateSkill == null)
                 {
@@ -54,7 +54,7 @@ namespace Proyecto_Final_PrograIV.Services.CandiadateSkillService
 
             public CandidateSkill UpdateCandidateSkill(int id, CandidateSkill candidateSkill)
             {
-                CandidateSkill updateCandidateSkill = _dbContext.CandidateSkill.Find(id);
+                CandidateSkill updateCandidateSkill = _dbContext.CandidateSkills.Find(id);
                 if (updateCandidateSkill == null)
                 {
                     throw new Exception("... not found");

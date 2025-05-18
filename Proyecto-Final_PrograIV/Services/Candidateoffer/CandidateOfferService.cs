@@ -14,18 +14,18 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
         }
         public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer)
         {
-            _dbContext.CandidateOffer.Add(candidateOffer);
+            _dbContext.CandidateOffers.Add(candidateOffer);
             _dbContext.SaveChanges();
 
             return candidateOffer;
         }
         public void DeleteCandidateOfferById(int id)
         {
-            CandidateOffer DeleteCandidateOffer = _dbContext.CandidateOffer.Find(id);
+            CandidateOffer DeleteCandidateOffer = _dbContext.CandidateOffers.Find(id);
 
             if (DeleteCandidateOffer != null)
             {
-                _dbContext.CandidateOffer.Remove(DeleteCandidateOffer);
+                _dbContext.CandidateOffers.Remove(DeleteCandidateOffer);
                 _dbContext.SaveChanges();
             }
             else
@@ -36,12 +36,12 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
 
         public List<CandidateOffer> GetAllCandidateOffer()
         {
-            return _dbContext.CandidateOffer.Include(x => x.Offer).Include(x => x.Candidate).ToList();
+            return _dbContext.CandidateOffers.Include(x => x.Offer).Include(x => x.Candidate).ToList();
         }
 
         public CandidateOffer GetCandidateOfferById(int id)
         {
-            CandidateOffer candidateOffer = _dbContext.CandidateOffer.Find(id);
+            CandidateOffer candidateOffer = _dbContext.CandidateOffers.Find(id);
 
             if (candidateOffer == null)
             {
@@ -52,7 +52,7 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
 
         public CandidateOffer UpdateCandidateOffer(int id, CandidateOffer candidateOffer)
         {
-            CandidateOffer updateCandidateOffer = _dbContext.CandidateOffer.Find(id);
+            CandidateOffer updateCandidateOffer = _dbContext.CandidateOffers.Find(id);
             if (updateCandidateOffer == null)
             {
                 throw new Exception("Candidate not found");

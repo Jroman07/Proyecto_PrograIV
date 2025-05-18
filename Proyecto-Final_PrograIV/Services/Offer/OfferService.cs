@@ -55,7 +55,23 @@ namespace Proyecto_Final_PrograIV.Services
             }
         }
 
-    
+        public List<Offer> GetOffersByCandidate(int Id)
+        {
+            Candidate candidate = _dbContext.Candidates.Find(Id);
+            var candidateSkillIds = _dbContext.CandidateSkills
+                .Where(cs => cs.CandidateId == Id)
+                .Select(cs => cs.SkillId)
+                .ToList();
+
+            var offers = _dbContext.Offers
+                .Include(o => o.OfferSkills)
+                .ThenInclude(os => os.Skill)
+                .Where(o => o.OfferSkills.Any(os => candidateSkillIds.Contains(os.SkillId)))
+                .ToList();
+
+            return offers;
+        }
+
         public List<Offer> GetOffersByName(string? job)
         {
             {
