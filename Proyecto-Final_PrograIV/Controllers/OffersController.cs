@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services;
@@ -12,37 +8,53 @@ namespace Proyecto_Final_PrograIV.Controllers
     [Route("api/[controller]")]
     public class OffersController : ControllerBase
     {
-        private readonly IOfferService _OfferService;
+        private readonly IOfferService _offerService;
 
         public OffersController(IOfferService offerService)
         {
-            _OfferService = offerService;
+            _offerService = offerService;
         }
 
-        // get : api/OffersController
+        // GET: api/offers
         [HttpGet]
-        public IEnumerable<Offer> Get()
+        public ActionResult<IEnumerable<Offer>> GetAll()
         {
-            return _OfferService.GetallOffers();
+            var offers = _offerService.GetallOffers();
+            return Ok(offers);
         }
 
-        // get by id
-        [HttpGet("{id}")]
-        public Offer Get(int id)
+        // GET: api/offers/5
+        [HttpGet("{id:int}")]
+        public ActionResult<Offer> GetById(int id)
         {
-            return _OfferService.GetOfferById(id);
+            try
+            {
+                var offer = _offerService.GetOfferById(id);
+                return Ok(offer);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
 
+        // GET: api/offers/search?name=frontend
         [HttpGet("search")]
-        public IEnumerable<Offer> Get([FromQuery] string? name)
+        public ActionResult<IEnumerable<Offer>> SearchByName([FromQuery] string? name)
         {
-            return _OfferService.GetOffersByName(name);
+            var results = _offerService.GetOffersByName(name);
+            return Ok(results);
         }
 
+        // POST: api/offers
         [HttpPost]
-        public Offer Post([FromBody] Offer offer)
+        public ActionResult<Offer> Create([FromBody] Offer offer)
         {
-            return _OfferService.AddOffer(offer);
+            if (offer == null || string.IsNullOrWhiteSpace(offer.Job))
+                return BadRequest(new { message = "Datos de oferta inválidos." });
+
+            var created = _offerService.AddOffer(offer);
+            return CreatedAtAction(nameof(GetById), new { id = created.OfferId }, created);
         }
     }
 }

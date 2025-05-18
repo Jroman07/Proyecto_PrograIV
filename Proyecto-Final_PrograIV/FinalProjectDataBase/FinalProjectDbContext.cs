@@ -10,6 +10,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
             optionsBuilder.UseInMemoryDatabase(databaseName: "JWTDataBase");
         }
 
+        // DbSets activos
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Offer> Offers { get; set; }
@@ -19,15 +20,15 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Company 1 - * Offer
+            // 1:N → Company tiene muchas Offers
             modelBuilder.Entity<Offer>()
                 .HasOne(o => o.Company)
                 .WithMany(c => c.Offers)
                 .HasForeignKey(o => o.CompanyId);
 
-            // Offer * - * Skill (via OfferSkill)
+            // M:N → Offer tiene muchas Skills (via OfferSkill)
             modelBuilder.Entity<OfferSkill>()
-                .HasKey(os => new { os.OfferId, os.SkillId }); // Composite key
+                .HasKey(os => new { os.OfferId, os.SkillId });
 
             modelBuilder.Entity<OfferSkill>()
                 .HasOne(os => os.Offer)
@@ -39,9 +40,9 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 .WithMany(s => s.OfferSkills)
                 .HasForeignKey(os => os.SkillId);
 
-            // Candidate * - * Offer (via CandidateOffer)
+            // M:N → Candidate aplica a muchas Offers (via CandidateOffer)
             modelBuilder.Entity<CandidateOffer>()
-                .HasKey(co => new { co.CandidateId, co.OfferId }); // Composite key
+                .HasKey(co => new { co.CandidateId, co.OfferId });
 
             modelBuilder.Entity<CandidateOffer>()
                 .HasOne(co => co.Candidate)
@@ -53,7 +54,5 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 .WithMany(o => o.CandidateOffers)
                 .HasForeignKey(co => co.OfferId);
         }
-
-
     }
 }

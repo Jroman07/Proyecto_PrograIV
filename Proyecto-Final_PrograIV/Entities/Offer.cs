@@ -3,14 +3,17 @@
     public class Offer
     {
         public int OfferId { get; set; }
-        public string Job { get; set; }
-        public string Description { get; set; }
 
-        // Clave Foránea
-        public int CompanyId { get; set; }
-        // Propiedad de navegación (relación con Empresa)
+        public string Job { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+
+        // Clave foránea opcional
+        public int? CompanyId { get; set; }
+
+        // Propiedad de navegación opcional
         public Company? Company { get; set; }
-        public List<OfferSkill>? OfferSkills { get; set; }
-        public List<CandidateOffer>? CandidateOffers { get; set; }
+
+        public List<OfferSkill> OfferSkills { get; set; } = new();
+        public List<CandidateOffer> CandidateOffers { get; set; } = new();
     }
 }

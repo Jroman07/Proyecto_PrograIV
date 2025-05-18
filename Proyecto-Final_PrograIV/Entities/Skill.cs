@@ -2,9 +2,11 @@
 {
     public class Skill
     {
-        public int SkillId{get; set;}
-        public string Name {get; set;}
-        public IList<OfferSkill>? OfferSkills { get; set; }
+        public int SkillId { get; set; }
 
+        public string? Name { get; set; }
+
+        // Relación M:N con ofertas
+        public List<OfferSkill> OfferSkills { get; set; } = new();
     }
 }

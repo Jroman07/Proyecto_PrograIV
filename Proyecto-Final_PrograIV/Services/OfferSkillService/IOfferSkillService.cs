@@ -6,7 +6,8 @@ namespace Proyecto_Final_PrograIV.Services
     {
         void AddSkillToOffer(int offerId, int skillId);
         void RemoveSkillFromOffer(int offerId, int skillId);
-        List<Skill> GetSkillsByOffer(int offerId);
-        List<Offer> GetOffersBySkill(int skillId);
+
+        // Método unificado con filtros opcionales
+        List<OfferSkill> GetOfferSkills(int? offerId = null, int? skillId = null);
     }
 }

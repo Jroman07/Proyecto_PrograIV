@@ -2,8 +2,6 @@
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services.SkillsServices;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
@@ -11,44 +9,74 @@ namespace Proyecto_Final_PrograIV.Controllers
     public class SkillsController : ControllerBase
     {
         private readonly ISkillService _skillService;
+
         public SkillsController(ISkillService skillService)
         {
             _skillService = skillService;
         }
-        // GET: api/<SkillController>
+
+        // GET: api/skills
         [HttpGet]
-        public IEnumerable<Skill> Get()
+        public ActionResult<IEnumerable<Skill>> GetAll()
         {
-            return _skillService.GetSkills();
+            var skills = _skillService.GetSkills();
+            return Ok(skills);
         }
 
-        // GET api/<SkillController>/5
+        // GET: api/skills/5
         [HttpGet("{id}")]
-        public Skill Get(int id)
+        public ActionResult<Skill> GetById(int id)
         {
-            return _skillService.GetSkillById(id);
+            try
+            {
+                var skill = _skillService.GetSkillById(id);
+                return Ok(skill);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
 
-        // POST api/<SkillController>
+        // POST: api/skills
         [HttpPost]
-        public Skill Post([FromBody] Skill skill)
+        public ActionResult<Skill> Create([FromBody] Skill skill)
         {
-            return _skillService.AddSkill(skill);
-        }
-    
+            if (skill == null || string.IsNullOrWhiteSpace(skill.Name))
+                return BadRequest(new { message = "Datos inválidos" });
 
-        // PUT api/<SkillController>/5
+            var createdSkill = _skillService.AddSkill(skill);
+            return CreatedAtAction(nameof(GetById), new { id = createdSkill.SkillId }, createdSkill);
+        }
+
+        // PUT: api/skills/5
         [HttpPut("{id}")]
-        public Skill Put(int id, [FromBody] Skill skill)
+        public ActionResult<Skill> Update(int id, [FromBody] Skill skill)
         {
-            return _skillService.UpdateSkill(id, skill);
+            try
+            {
+                var updatedSkill = _skillService.UpdateSkill(id, skill);
+                return Ok(updatedSkill);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
 
-        // DELETE api/<SkillController>/5
+        // DELETE: api/skills/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            _skillService.DeleteSkill(id);
+            try
+            {
+                _skillService.DeleteSkill(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
     }
 }

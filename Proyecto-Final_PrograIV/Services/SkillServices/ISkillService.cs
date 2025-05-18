@@ -3,11 +3,12 @@
 namespace Proyecto_Final_PrograIV.Services.SkillsServices
 {
     public interface ISkillService
-    {
-        public List<Skill> GetSkills();
-        public Skill GetSkillById(int skillId);
-        public Skill AddSkill(Skill skill);
-        public Skill UpdateSkill(int id, Skill skill);
-        public void DeleteSkill(int id);
-    }
+{
+    List<Skill> GetSkills();
+    Skill GetSkillById(int id);
+    Skill AddSkill(Skill skill);
+    Skill UpdateSkill(int id, Skill skill);
+    void DeleteSkill(int id);
+}
+
 }

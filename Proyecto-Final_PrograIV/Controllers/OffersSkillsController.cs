@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services;
@@ -19,33 +15,51 @@ namespace Proyecto_Final_PrograIV.Controllers
             _offerSkillService = offerSkillService;
         }
 
-        // GET
-        [HttpGet("skills-by-offer/{offerId}")]
-        public List<Skill> GetSkillsByOffer(int offerId)
+        // GET: api/offerskills?offerId=1&skillId=2
+        [HttpGet]
+        public ActionResult<IEnumerable<object>> Get([FromQuery] int? offerId, [FromQuery] int? skillId)
         {
-            return _offerSkillService.GetSkillsByOffer(offerId);
+            var results = _offerSkillService.GetOfferSkills(offerId, skillId);
+
+            // Opcional: transformar salida si solo se quiere Skill u Offer
+            if (offerId.HasValue && !skillId.HasValue)
+                return Ok(results.Select(os => os.Skill));
+
+            if (!offerId.HasValue && skillId.HasValue)
+                return Ok(results.Select(os => os.Offer));
+
+            // Si ambos están presentes o ninguno, devolver relaciones completas
+            return Ok(results);
         }
 
-        // GET
-        [HttpGet("offers-by-skill/{skillId}")]
-        public List<Offer> GetOffersBySkill(int skillId)
-        {
-            return _offerSkillService.GetOffersBySkill(skillId);
-        }
-
-        // POST
+        // POST: api/offerskills?offerId=1&skillId=2
         [HttpPost]
-        public IActionResult Post([FromQuery] int offerId, [FromQuery] int skillId)
+        public IActionResult AddRelation([FromQuery] int offerId, [FromQuery] int skillId)
         {
-            _offerSkillService.AddSkillToOffer(offerId, skillId);
-            return Ok("Skill assigned to offer successfully");
+            try
+            {
+                _offerSkillService.AddSkillToOffer(offerId, skillId);
+                return Ok(new { message = "Relación creada correctamente" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
-        // DELETE
+        // DELETE: api/offerskills?offerId=1&skillId=2
         [HttpDelete]
-        public void Delete([FromQuery] int offerId, [FromQuery] int skillId)
+        public IActionResult DeleteRelation([FromQuery] int offerId, [FromQuery] int skillId)
         {
-            _offerSkillService.RemoveSkillFromOffer(offerId, skillId);
+            try
+            {
+                _offerSkillService.RemoveSkillFromOffer(offerId, skillId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
     }
 }
