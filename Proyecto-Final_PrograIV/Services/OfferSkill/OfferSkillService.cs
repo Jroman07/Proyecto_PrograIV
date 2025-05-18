@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
@@ -37,7 +38,7 @@ namespace Proyecto_Final_PrograIV.Services
 
         public List<OfferSkill> GetAllOfferSkills()
         {
-            return _dbContext.OfferSkills.ToList();
+            return _dbContext.OfferSkills.Include(x => x.Offer).Include(x => x.Skill).ToList();
         }
 
         public OfferSkill GetOfferSkillsById(int Id)

@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_PrograIV.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 
 namespace Proyecto_Final_PrograIV.Services.Candidateoffer
@@ -35,7 +36,7 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
 
         public List<CandidateOffer> GetAllCandidateOffer()
         {
-            return _dbContext.CandidateOffer.ToList();
+            return _dbContext.CandidateOffer.Include(x => x.Offer).Include(x => x.Candidate).ToList();
         }
 
         public CandidateOffer GetCandidateOfferById(int id)
