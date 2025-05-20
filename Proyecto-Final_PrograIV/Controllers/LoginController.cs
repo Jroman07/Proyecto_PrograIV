@@ -8,12 +8,12 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class LoginController : ControllerBase
     {
 
         private readonly ISvAuth _authService;
 
-        public AuthController(ISvAuth authService)
+        public LoginController(ISvAuth authService)
         {
             _authService = authService;
         }

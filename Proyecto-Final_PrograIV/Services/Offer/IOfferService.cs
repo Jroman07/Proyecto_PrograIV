@@ -10,6 +10,7 @@ namespace Proyecto_Final_PrograIV.Services
     public interface IOfferService
     {
         public List<Offer> GetallOffers();
+
         public List<Offer> GetOffersByCandidate(int Id);
 
         public Offer GetOfferById(int Id);
