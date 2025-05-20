@@ -76,7 +76,17 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
             return offers;
         }
+       public List<Skill> GetSkillByCandidate(int Id)
+        {
+            List<Skill> skills = _dbContext.Candidates
+                .Include(c=>c.CandidateSkills).
+                ThenInclude(co => co.Skill)
+                .Where(x=>x.CandidateId==Id)
+                .SelectMany(c=>c.CandidateSkills
+                .Select(co => co.Skill)).ToList();
 
+            return skills;
+        }
         public Candidate UpdateCandidate(int Id, Candidate candidate)
         {
             Candidate updateCandidate = _dbContext.Candidates.Find(Id);
