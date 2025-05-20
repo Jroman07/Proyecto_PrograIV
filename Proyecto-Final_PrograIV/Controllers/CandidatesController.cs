@@ -18,7 +18,7 @@ namespace Proyecto_Final_PrograIV.Controllers
         }
         // GET: api/<CandidatesController>
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "CANDIDATE")]
         public IEnumerable<Candidate> Get()
         {
             return _candidateService.GetAllCandidates();

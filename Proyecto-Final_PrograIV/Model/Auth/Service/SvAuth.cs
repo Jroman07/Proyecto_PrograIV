@@ -14,14 +14,12 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
         {
             _dbContext = dbContext;
         }
-        private string GenerateJwtToken(Candidate candidate)
+        private string GenerateJwtToken(string email, string role)
         {
             var claims = new[]
             {
-                new Claim("name", candidate.Name),
-                new Claim("surname1", candidate.Surname1),
-                new Claim("surname2", candidate.Surname2),
-                new Claim(JwtRegisteredClaimNames.Email, candidate.Email),
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -55,7 +53,7 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
                     }
                     else
                     {
-                        return GenerateJwtToken(Data);
+                        return GenerateJwtToken(Data.Email, Data.Role);
                     }
                 }
             }
