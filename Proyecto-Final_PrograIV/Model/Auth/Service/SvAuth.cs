@@ -38,7 +38,7 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
 
         public string Authenticate(Auth auth)
         {
-            if(auth.Email != null && auth.Password != null)
+            if(auth != null)
             {
                 Candidate Data = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
                 if (Data == null)
