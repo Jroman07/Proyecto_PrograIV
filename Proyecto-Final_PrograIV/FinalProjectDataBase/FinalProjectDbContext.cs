@@ -7,7 +7,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "JWTDataBase");
+            optionsBuilder.UseInMemoryDatabase(databaseName: "FinalProjectDataBase");
         }
 
         public DbSet<Candidate> Candidates { get; set; }
@@ -37,6 +37,15 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 });
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill { SkillId = 1, Name = "C#" },
+                new Skill { SkillId = 2, Name = "JavaScript" },
+                new Skill { SkillId = 3, Name = "Python" },
+                new Skill { SkillId = 4, Name = "SQL" },
+                new Skill { SkillId = 5, Name = "HTML" }
+            );
+
             // Company 1 - * Offer
             modelBuilder.Entity<Offer>()
                 .HasOne(o => o.Company)

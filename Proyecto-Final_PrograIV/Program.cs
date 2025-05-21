@@ -76,4 +76,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FinalProjectDbContext>();
+
+    // Esto hace que EF Core cree las entidades y aplique HasData()
+    var count = db.Skills.Count();
+}
+
 app.Run();
