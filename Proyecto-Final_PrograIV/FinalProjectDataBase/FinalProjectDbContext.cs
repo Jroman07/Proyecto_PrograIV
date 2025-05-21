@@ -17,9 +17,25 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
         public DbSet<OfferSkill> OfferSkills { get; set; }
         public DbSet<CandidateOffer> CandidateOffers { get; set; }
         public DbSet<CandidateSkill> CandidateSkills { get; set; }
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Skill>().HasData(
+                new List<Skill>
+                {
+                    new Skill { SkillId=1, Name ="C#"},
+                    new Skill { SkillId=2, Name ="C++"},
+                    new Skill { SkillId=3, Name ="Java"},
+                    new Skill { SkillId=4, Name ="PHP"},
+                    new Skill { SkillId=5, Name ="Tailwind CSS"},
+                    new Skill { SkillId=6, Name ="React"},
+                    new Skill { SkillId=7, Name ="MySQL"},
+                    new Skill { SkillId=8, Name ="Git"},
+                    new Skill { SkillId=9, Name ="GitHub"},
+                    new Skill { SkillId=10, Name ="Azure DevOps"},
+
+                });
+
             base.OnModelCreating(modelBuilder);
             // Company 1 - * Offer
             modelBuilder.Entity<Offer>()
