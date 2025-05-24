@@ -9,7 +9,7 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "CANDIDATE")]
     public class SkillsController : ControllerBase
     {
         private readonly ISkillService _skillService;

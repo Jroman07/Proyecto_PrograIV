@@ -53,7 +53,7 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
                     }
                     else
                     {
-                        return GenerateJwtToken(Data.Email, Data.Role);
+                        return GenerateJwtToken(Data.Email, "CANDIDATE");
                     }
                 }
             }
