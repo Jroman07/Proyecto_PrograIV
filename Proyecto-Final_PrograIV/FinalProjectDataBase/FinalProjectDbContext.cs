@@ -82,7 +82,11 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Candidate * - * Skill
             modelBuilder.Entity<CandidateSkill>()
-                .HasKey(co => new { co.CandidateId, co.SkillId });
+     .HasKey(cs => cs.Id);
+
+            modelBuilder.Entity<CandidateSkill>()
+                .Property(cs => cs.Id)
+                .ValueGeneratedOnAdd(); 
 
             modelBuilder.Entity<CandidateSkill>()
                 .HasOne(co => co.Skill) 
