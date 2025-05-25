@@ -21,9 +21,14 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<AuthController>
         [HttpPost]
-        public AuthResponse Post([FromBody] Auth auth )
+        public ActionResult<AuthResponse> Post([FromBody] Auth auth )
         {
-            return _authService.Authenticate(auth);
+            var result = _authService.Authenticate(auth);
+            if (result == null)
+            {
+                return Unauthorized(); // o BadRequest("Credenciales inválidas");
+            }
+            return Ok(result);
         }
     }
 }
