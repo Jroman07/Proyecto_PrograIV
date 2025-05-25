@@ -80,7 +80,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 .WithMany(o => o.CandidateOffers)
                 .HasForeignKey(co => co.OfferId);
 
-            // Candidate 1 - * Skill
+            // Candidate * - * Skill
             modelBuilder.Entity<CandidateSkill>()
                 .HasKey(co => new { co.CandidateId, co.SkillId });
 
