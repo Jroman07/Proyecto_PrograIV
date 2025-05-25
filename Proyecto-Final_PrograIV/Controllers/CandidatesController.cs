@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
+using Proyecto_Final_PrograIV.Model.Auth;
 using Proyecto_Final_PrograIV.Services.CandidateServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -50,9 +51,14 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<CandidatesController>
         [HttpPost]
-        public Candidate Post([FromBody] Candidate candidate)
+        public ActionResult<Candidate>  Post([FromBody] Candidate candidate)
         {
-            return _candidateService.AddCandidate(candidate);
+            var result = _candidateService.AddCandidate(candidate);
+            if (result == null)
+            {
+                return Conflict("Ya existe un candidato con ese correo electrónico.");
+            }
+            return Ok(result);
         }
 
         // PUT api/<CandidatesController>/5

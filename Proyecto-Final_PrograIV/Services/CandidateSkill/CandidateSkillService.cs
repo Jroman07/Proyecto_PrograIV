@@ -21,20 +21,22 @@ namespace Proyecto_Final_PrograIV.Services.CandiadateSkillService
 
                 return candidateSkill;
             }
-            public void DeleteCandidateSkillById(int id)
+            public void DeleteCandidateSkill(CandidateSkill candidateSkill)
             {
-                CandidateSkill DeleteCandiadateSkill = _dbContext.CandidateSkills.Find(id);
+                var existing = _dbContext.CandidateSkills
+                    .FirstOrDefault(cs => cs.CandidateId == candidateSkill.CandidateId && cs.SkillId == candidateSkill.SkillId);
 
-                if (DeleteCandiadateSkill != null)
+                if (existing != null)
                 {
-                    _dbContext.CandidateSkills.Remove(DeleteCandiadateSkill);
+                    _dbContext.CandidateSkills.Remove(existing);
                     _dbContext.SaveChanges();
                 }
                 else
                 {
-                    throw new Exception("... not found");
+                    throw new Exception("CandidateSkill not found");
                 }
             }
+
 
             public List<CandidateSkill> GetAllCandidateSkills()
             {

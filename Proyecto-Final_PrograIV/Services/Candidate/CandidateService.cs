@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
+using Proyecto_Final_PrograIV.Model.Auth;
 
 namespace Proyecto_Final_PrograIV.Services.CandidateServices
 {
@@ -14,10 +15,27 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         public Candidate AddCandidate(Candidate candidate)
         {
-            _dbContext.Candidates.Add(candidate);
-            _dbContext.SaveChanges();
+            if (candidate == null)
+            {
+                return null;
+            }
+            else
+            {
+                Candidate? Data = _dbContext.Candidates.Where(x => x.Email == candidate.Email).FirstOrDefault();
+                if (Data != null)
+                {
+                    return null;
+                }
+                else
+                {
+                    _dbContext.Candidates.Add(candidate);
+                    _dbContext.SaveChanges();
 
-            return candidate;
+                    return candidate;
+                }
+                
+            }
+                
         }
 
         public void DeleteCandidate(int Id)
@@ -43,7 +61,10 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         public Candidate GetCandidateById(int Id)
         {
-            Candidate candidate = _dbContext.Candidates.Find(Id);
+            Candidate candidate = _dbContext.Candidates
+                .Include(x => x.CandidateSkills)
+                .FirstOrDefault(c => c.CandidateId == Id); // Use FirstOrDefault instead of Find
+
             if (candidate == null)
             {
                 throw new Exception("Candidate not found");
