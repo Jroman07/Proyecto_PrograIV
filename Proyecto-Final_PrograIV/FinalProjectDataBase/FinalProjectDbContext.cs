@@ -54,7 +54,11 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Offer * - * Skill (via OfferSkill)
             modelBuilder.Entity<OfferSkill>()
-                .HasKey(os => new { os.OfferId, os.SkillId }); // Composite key
+                .HasKey(cs => cs.Id); // Composite key
+
+            modelBuilder.Entity<OfferSkill>()
+                .Property(cs => cs.Id)
+                .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<OfferSkill>()
                 .HasOne(os => os.Offer)
@@ -68,7 +72,11 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Candidate * - * Offer (via CandidateOffer)
             modelBuilder.Entity<CandidateOffer>()
-                .HasKey(co => new { co.CandidateId, co.OfferId }); // Composite key
+                .HasKey(cs => cs.Id); // Composite key
+
+            modelBuilder.Entity<CandidateOffer>()
+                .Property(cs => cs.Id)
+                .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<CandidateOffer>()
                 .HasOne(co => co.Candidate)
@@ -82,7 +90,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Candidate * - * Skill
             modelBuilder.Entity<CandidateSkill>()
-     .HasKey(cs => cs.Id);
+                .HasKey(cs => cs.Id);
 
             modelBuilder.Entity<CandidateSkill>()
                 .Property(cs => cs.Id)
