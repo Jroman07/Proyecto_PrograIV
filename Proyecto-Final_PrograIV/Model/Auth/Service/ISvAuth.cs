@@ -1,7 +1,9 @@
-﻿namespace Proyecto_Final_PrograIV.Model.Auth.Service
+﻿using Proyecto_Final_PrograIV.Entities;
+
+namespace Proyecto_Final_PrograIV.Model.Auth.Service
 {
     public interface ISvAuth
     {
-        public string Authenticate(Auth auth);
+        public AuthResponse Authenticate(Auth auth);
     }
 }

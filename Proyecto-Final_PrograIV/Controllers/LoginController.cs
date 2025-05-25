@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Model.Auth;
 using Proyecto_Final_PrograIV.Model.Auth.Service;
 
@@ -20,7 +21,7 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<AuthController>
         [HttpPost]
-        public string Post([FromBody] Auth auth )
+        public AuthResponse Post([FromBody] Auth auth )
         {
             return _authService.Authenticate(auth);
         }

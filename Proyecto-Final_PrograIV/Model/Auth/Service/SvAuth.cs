@@ -37,7 +37,7 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public string Authenticate(Auth auth)
+        public AuthResponse Authenticate(Auth auth)
         {
             if(auth != null)
             {
@@ -54,7 +54,13 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
                     }
                     else
                     {
-                        return GenerateJwtToken(Data.CandidateId, Data.Email, "CANDIDATE");
+                        var token = GenerateJwtToken(Data.CandidateId, Data.Email, "CANDIDATE");
+
+                        return new AuthResponse
+                        {
+                            Token = token,
+                            Candidate = Data
+                        };
                     }
                 }
             }
