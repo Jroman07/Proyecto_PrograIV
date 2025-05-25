@@ -2,7 +2,7 @@
 {
     public class AuthResponse
     {
-        public string Token { get; set; }
-        public int CandidateId { get; set; }
+        public string token { get; set; }
+        public int candidateId { get; set; }
     }
 }
