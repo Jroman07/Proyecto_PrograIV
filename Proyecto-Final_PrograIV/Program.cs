@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Proyecto_Final_PrograIV.FinalProjectDataBase;
 using Proyecto_Final_PrograIV.Model.Auth.Service;
@@ -77,12 +77,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 
+// 🌱 Crear DB y aplicar seed (HasData)
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<FinalProjectDbContext>();
-
-    // Esto hace que EF Core cree las entidades y aplique HasData()
-    var count = db.Skills.Count();
+    var context = scope.ServiceProvider.GetRequiredService<FinalProjectDbContext>();
+    context.Database.EnsureCreated(); // Carga datos de HasData
 }
 
 app.Run();

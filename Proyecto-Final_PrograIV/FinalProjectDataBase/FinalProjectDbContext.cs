@@ -20,30 +20,49 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //base.OnModelCreating(modelBuilder);
+
             //modelBuilder.Entity<Skill>().HasData(
-            //    new List<Skill>
-            //    {
-            //        new Skill { SkillId=1, Name ="C#"},
-            //        new Skill { SkillId=2, Name ="C++"},
-            //        new Skill { SkillId=3, Name ="Java"},
-            //        new Skill { SkillId=4, Name ="PHP"},
-            //        new Skill { SkillId=5, Name ="Tailwind CSS"},
-            //        new Skill { SkillId=6, Name ="React"},
-            //        new Skill { SkillId=7, Name ="MySQL"},
-            //        new Skill { SkillId=8, Name ="Git"},
-            //        new Skill { SkillId=9, Name ="GitHub"},
-            //        new Skill { SkillId=10, Name ="Azure DevOps"},
+            //    new Skill { SkillId = 1, Name = "C#" },
+            //    new Skill { SkillId = 2, Name = "JavaScript" },
+            //    new Skill { SkillId = 3, Name = "Python" },
+            //    new Skill { SkillId = 4, Name = "SQL" },
+            //    new Skill { SkillId = 5, Name = "HTML" }
+            //);
 
-            //    });
+            // 🔹 Semilla de empresas
+            modelBuilder.Entity<Company>().HasData(
+                new Company { CompanyId = 1, Name = "Empresa Demo 1", Email = "demo1@empresa.com", WebSite = "https://demo1.empresa.com" },
+                new Company { CompanyId = 2, Name = "Empresa Demo 2", Email = "demo2@empresa.com", WebSite = "https://demo2.empresa.com" },
+                new Company { CompanyId = 3, Name = "Empresa Demo 3", Email = "demo3@empresa.com", WebSite = "https://demo3.empresa.com" }
+            );
 
-            base.OnModelCreating(modelBuilder);
+            // 🔹 Semilla de ofertas
+            modelBuilder.Entity<Offer>().HasData(
+                new Offer { OfferId = 1, Job = "QA", Description = "Revisión", CompanyId = 2 },
+                new Offer { OfferId = 2, Job = "Desarrollo web", Description = "Desarrollar sistemas", CompanyId = 1 },
+                new Offer { OfferId = 3, Job = "Programacion", Description = "Desarrollo de software", CompanyId = 2 },
+                new Offer { OfferId = 4, Job = "Gerente informatico", Description = "Administrar proyectos", CompanyId = 3 }
+            );
 
+            //🔹 Habilidades(Skills)
             modelBuilder.Entity<Skill>().HasData(
                 new Skill { SkillId = 1, Name = "C#" },
-                new Skill { SkillId = 2, Name = "JavaScript" },
-                new Skill { SkillId = 3, Name = "Python" },
-                new Skill { SkillId = 4, Name = "SQL" },
-                new Skill { SkillId = 5, Name = "HTML" }
+                new Skill { SkillId = 2, Name = "SQL" },
+                new Skill { SkillId = 3, Name = "Nest" },
+                new Skill { SkillId = 4, Name = "MySQL" }
+            );
+
+            // 🔹 Relación Oferta-Habilidad (OfferSkill)
+            // Usa la clave compuesta {IdOffer, SkillId}
+            modelBuilder.Entity<OfferSkill>().HasData(
+                new OfferSkill { Id = 1, OfferId = 1, SkillId = 2 }, // Oferta 1 requiere SQL
+                new OfferSkill { Id = 2, OfferId = 1, SkillId = 3 }, // Oferta 1 requiere Nest
+                new OfferSkill { Id = 3, OfferId = 2, SkillId = 1 },  // Oferta 2 requiere C#
+                new OfferSkill { Id = 4, OfferId = 2, SkillId = 2 },
+                new OfferSkill { Id = 5, OfferId = 2, SkillId = 3 },
+                new OfferSkill { Id = 6, OfferId = 3, SkillId = 1 },
+                new OfferSkill { Id = 7, OfferId = 3, SkillId = 4 }
             );
 
             // Company 1 - * Offer
