@@ -7,7 +7,7 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
         public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer);
         public void DeleteCandidateOfferById(int id);
         public List<CandidateOffer> GetAllCandidateOffer();
-        public CandidateOffer GetCandidateOfferById(int id);
+        public List<Offer> GetCandidateOfferById(int id);
         public CandidateOffer UpdateCandidateOffer(int id, CandidateOffer candidateOffer);
     }
 }

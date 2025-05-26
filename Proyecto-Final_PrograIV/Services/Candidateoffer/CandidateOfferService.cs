@@ -39,15 +39,24 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
             return _dbContext.CandidateOffers.Include(x => x.Offer).Include(x => x.Candidate).ToList();
         }
 
-        public CandidateOffer GetCandidateOfferById(int id)
+        public List<Offer> GetCandidateOfferById(int id)
         {
-            CandidateOffer candidateOffer = _dbContext.CandidateOffers.Find(id);
+            var offers = _dbContext.CandidateOffers
+            .Where(co => co.CandidateId == id)
+            .Include(co => co.Offer)
+            .ThenInclude(o => o.Company)
+            .Include(co => co.Offer)
+            .ThenInclude(o => o.OfferSkills)
+            .ThenInclude(os => os.Skill)
+            .Select(co => co.Offer)
+            .ToList();
 
-            if (candidateOffer == null)
+            if (offers == null)
             {
-                throw new Exception("... not found");
+                throw new Exception("...No found");
             }
-            return candidateOffer;
+
+            return offers;
         }
 
         public CandidateOffer UpdateCandidateOffer(int id, CandidateOffer candidateOffer)
