@@ -66,7 +66,7 @@ namespace Proyecto_Final_PrograIV.Services
             var offers = _dbContext.Offers
                 .Include(o => o.OfferSkills)
                 .ThenInclude(os => os.Skill)
-                .Where(o => o.OfferSkills.Any(os => candidateSkillIds.Contains(os.SkillId)))
+                .Where(o => o.OfferSkills.Any(os => candidateSkillIds.Contains(os.SkillId))).Include(a=>a.Company)
                 .ToList();
 
             return offers;
