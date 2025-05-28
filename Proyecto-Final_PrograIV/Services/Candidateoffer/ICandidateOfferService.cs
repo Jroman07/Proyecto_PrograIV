@@ -4,7 +4,7 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
 {
     public interface ICandidateOfferService
     {
-        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer);
+        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer, int id);
         public void DeleteCandidateOfferById(int id);
         public List<CandidateOffer> GetAllCandidateOffer();
         public List<Offer> GetCandidateOfferById(int id);

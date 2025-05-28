@@ -32,9 +32,9 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<CandidateOfferByIdController>
         [HttpPost]
-        public CandidateOffer Post([FromBody] CandidateOffer candidateOffer)
+        public CandidateOffer Post([FromBody] CandidateOffer candidateOffer, int id)
         {
-            return _CandidateOfferService.AddCandidateOffer(candidateOffer);
+            return _CandidateOfferService.AddCandidateOffer(candidateOffer,id);
         }
 
         // PUT api/<CandidateOfferByIdController>/5
