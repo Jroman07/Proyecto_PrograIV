@@ -12,12 +12,12 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
         {
             _dbContext = dbContext;
         }
-        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer, int id)
+        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer)
         {
-            bool  postulation = _dbContext.CandidateOffers.Any(x=>x.CandidateId == id && candidateOffer.OfferId == id);
-            if (postulation)
+            CandidateOffer?  postulation = _dbContext.CandidateOffers.Where(co => co.CandidateId == candidateOffer.CandidateId && co.OfferId == candidateOffer.OfferId).FirstOrDefault();
+            if (postulation != null)
             {
-                throw new Exception("...");
+                return null;
             }
             else{
                 _dbContext.CandidateOffers.Add(candidateOffer);
