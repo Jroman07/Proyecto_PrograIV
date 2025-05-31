@@ -13,21 +13,12 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
             _dbContext = dbContext;
         }
         public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer)
-<<<<<<< HEAD
         { 
             CandidateOffer postulation = _dbContext.CandidateOffers.Where(x=>x.OfferId == candidateOffer.OfferId && candidateOffer.CandidateId == candidateOffer.CandidateId).FirstOrDefault(); 
 
-
-            if (postulation != null)
-            {
-              return null;
-=======
-        {
-            CandidateOffer?  postulation = _dbContext.CandidateOffers.Where(co => co.CandidateId == candidateOffer.CandidateId && co.OfferId == candidateOffer.OfferId).FirstOrDefault();
             if (postulation != null)
             {
                 return null;
->>>>>>> 7a0618776d5975d697cdf319b63c66090f69c07d
             }
             else{
                 _dbContext.CandidateOffers.Add(candidateOffer);
