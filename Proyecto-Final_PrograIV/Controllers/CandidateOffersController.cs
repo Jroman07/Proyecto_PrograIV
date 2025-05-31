@@ -32,9 +32,21 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<CandidateOfferByIdController>
         [HttpPost]
+<<<<<<< HEAD
         public CandidateOffer Post([FromBody] CandidateOffer candidateOffer)
         {
             return _CandidateOfferService.AddCandidateOffer(candidateOffer);
+=======
+        public ActionResult<CandidateOffer> Post([FromBody] CandidateOffer candidateOffer)
+        {
+            var response = _CandidateOfferService.AddCandidateOffer(candidateOffer);
+
+            if (response == null)
+            {
+                return Conflict("El candidato ya existe.");
+            }
+            return response;
+>>>>>>> 7a0618776d5975d697cdf319b63c66090f69c07d
         }
 
         // PUT api/<CandidateOfferByIdController>/5

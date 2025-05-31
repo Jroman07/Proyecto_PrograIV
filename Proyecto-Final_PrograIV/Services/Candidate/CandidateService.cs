@@ -67,7 +67,7 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
             if (candidate == null)
             {
-                throw new Exception("Candidate not found");
+                return null; // Return null if candidate is not found
             }
             return candidate;
         }
