@@ -22,9 +22,9 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
         {
             // 🔹 Semilla de compañías
             modelBuilder.Entity<Company>().HasData(
-                new Company { CompanyId = 1, Name = "Empresa Demo 1", Email = "demo1@empresa.com", WebSite = "https://demo1.empresa.com" },
-                new Company { CompanyId = 2, Name = "Empresa Demo 2", Email = "demo2@empresa.com", WebSite = "https://demo2.empresa.com" },
-                new Company { CompanyId = 3, Name = "Empresa Demo 3", Email = "demo3@empresa.com", WebSite = "https://demo3.empresa.com" }
+                new Company { CompanyId = 1, Name = "Innowise", Email = "contact@innowise.com", WebSite = "https://innowise.com/es/tecnologias/desarrollo-dot-net/" },
+                new Company { CompanyId = 2, Name = "TURING", Email = "contact@turing.com", WebSite = "https://www.turing.com/es/jobs/remote-react-js-developer" },
+                new Company { CompanyId = 3, Name = "Parallel Devs", Email = "info@paralleldevs.com", WebSite = "https://www.paralleldevs.com/" }
             );
 
             // 🔹 Semilla de habilidades
