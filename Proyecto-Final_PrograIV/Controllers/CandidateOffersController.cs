@@ -32,9 +32,9 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<CandidateOfferByIdController>
         [HttpPost]
-        public CandidateOffer Post([FromBody] CandidateOffer candidateOffer, int id)
+        public CandidateOffer Post([FromBody] CandidateOffer candidateOffer)
         {
-            return _CandidateOfferService.AddCandidateOffer(candidateOffer,id);
+            return _CandidateOfferService.AddCandidateOffer(candidateOffer);
         }
 
         // PUT api/<CandidateOfferByIdController>/5
@@ -49,6 +49,11 @@ namespace Proyecto_Final_PrograIV.Controllers
         public void Delete(int id)
         {
             _CandidateOfferService.DeleteCandidateOfferById(id);
+        }
+        [HttpDelete]
+        public void DeleteCandidateOffer(int idCandidate,int idOffer)
+        {
+            _CandidateOfferService.DeleteCandidateOffer(idCandidate, idOffer);
         }
     }
 }

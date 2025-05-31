@@ -12,12 +12,14 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
         {
             _dbContext = dbContext;
         }
-        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer, int id)
-        {
-            bool  postulation = _dbContext.CandidateOffers.Any(x=>x.CandidateId == id && candidateOffer.OfferId == id);
-            if (postulation)
+        public CandidateOffer AddCandidateOffer(CandidateOffer candidateOffer)
+        { 
+            CandidateOffer postulation = _dbContext.CandidateOffers.Where(x=>x.OfferId == candidateOffer.OfferId && candidateOffer.CandidateId == candidateOffer.CandidateId).FirstOrDefault(); 
+
+
+            if (postulation != null)
             {
-                throw new Exception("...");
+              return null;
             }
             else{
                 _dbContext.CandidateOffers.Add(candidateOffer);
@@ -35,6 +37,21 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
             if (DeleteCandidateOffer != null)
             {
                 _dbContext.CandidateOffers.Remove(DeleteCandidateOffer);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("... not found");
+            }
+        }
+        public void DeleteCandidateOffer(int candidateId, int offerId)
+        {
+            CandidateOffer? candidateOffer = _dbContext.CandidateOffers
+                .FirstOrDefault(co => co.CandidateId == candidateId && co.OfferId == offerId);
+
+            if (candidateOffer != null)
+            {
+                _dbContext.CandidateOffers.Remove(candidateOffer);
                 _dbContext.SaveChanges();
             }
             else
