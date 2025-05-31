@@ -57,15 +57,11 @@ namespace Proyecto_Final_PrograIV.Controllers
         }
 
         // DELETE api/<CandidateOfferByIdController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            _CandidateOfferService.DeleteCandidateOfferById(id);
-        }
+   
         [HttpDelete]
-        public void DeleteCandidateOffer(int idCandidate,int idOffer)
+        public void DeleteCandidateOffer(CandidateOffer candidateOffer)
         {
-            _CandidateOfferService.DeleteCandidateOffer(idCandidate, idOffer);
+            _CandidateOfferService.DeleteCandidateOffer(candidateOffer);
         }
     }
 }

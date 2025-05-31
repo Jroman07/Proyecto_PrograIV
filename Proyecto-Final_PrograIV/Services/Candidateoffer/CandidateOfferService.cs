@@ -38,28 +38,14 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
            
         }
 
-        public void DeleteCandidateOfferById(int id)
+        public void DeleteCandidateOffer(CandidateOffer candidateOffer)
         {
-            CandidateOffer DeleteCandidateOffer = _dbContext.CandidateOffers.Find(id);
+            var candidateOffer1 = _dbContext.CandidateOffers
+                .FirstOrDefault(co => co.CandidateId == candidateOffer.CandidateId && co.OfferId == candidateOffer.OfferId);
 
-            if (DeleteCandidateOffer != null)
+            if (candidateOffer1 != null)
             {
-                _dbContext.CandidateOffers.Remove(DeleteCandidateOffer);
-                _dbContext.SaveChanges();
-            }
-            else
-            {
-                throw new Exception("... not found");
-            }
-        }
-        public void DeleteCandidateOffer(int candidateId, int offerId)
-        {
-            CandidateOffer? candidateOffer = _dbContext.CandidateOffers
-                .FirstOrDefault(co => co.CandidateId == candidateId && co.OfferId == offerId);
-
-            if (candidateOffer != null)
-            {
-                _dbContext.CandidateOffers.Remove(candidateOffer);
+                _dbContext.CandidateOffers.Remove(candidateOffer1);
                 _dbContext.SaveChanges();
             }
             else
