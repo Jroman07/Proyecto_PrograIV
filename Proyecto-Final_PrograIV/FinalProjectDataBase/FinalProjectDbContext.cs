@@ -29,18 +29,18 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // 🔹 Semilla de habilidades
             modelBuilder.Entity<Skill>().HasData(
-                new Skill { SkillId = 1,  Name = "C#",         Icon= "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" },
-                new Skill { SkillId = 2,  Name = "SQL",        Icon = "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" },
+                new Skill { SkillId = 1,  Name = "C#",         Icon= "https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg" },
+                new Skill { SkillId = 2,  Name = "SQL",        Icon = "https://upload.wikimedia.org/wikipedia/commons/d/d7/Sql_data_base_with_logo.svg" },
                 new Skill { SkillId = 3,  Name = "Nest",       Icon = "https://upload.wikimedia.org/wikipedia/commons/a/a8/NestJS.svg" },
-                new Skill { SkillId = 4,  Name = "MySQL",      Icon = "https://brandlogos.net/wp-content/uploads/2017/05/mysql-logo_brandlogos.net_fqzvv-768x524.png" },
-                new Skill { SkillId = 5,  Name = "JavaScript", Icon = "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" },
-                new Skill { SkillId = 6,  Name = "TypeScript", Icon = "https://images.icon-icons.com/2415/PNG/512/typescript_plain_logo_icon_146316.png" },
-                new Skill { SkillId = 7,  Name = "React",      Icon = "https://1000logos.net/wp-content/uploads/2023/10/React-Logo.png" },
-                new Skill { SkillId = 8,  Name = "Node.js",    Icon = "https://cdn.iconscout.com/icon/free/png-512/free-node-js-logo-icon-download-in-svg-png-gif-file-formats--nodejs-programming-language-pack-logos-icons-1174925.png" },
-                new Skill { SkillId = 9,  Name = "Python",     Icon = "https://www.citypng.com/public/uploads/preview/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn.png" },
+                new Skill { SkillId = 4,  Name = "MySQL",      Icon = "https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg" },
+                new Skill { SkillId = 5,  Name = "JavaScript", Icon = "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" },
+                new Skill { SkillId = 6,  Name = "TypeScript", Icon = "https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" },
+                new Skill { SkillId = 7,  Name = "React",      Icon = "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" },
+                new Skill { SkillId = 8,  Name = "Node.js",    Icon = "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" },
+                new Skill { SkillId = 9,  Name = "Python",     Icon = "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" },
                 new Skill { SkillId = 10, Name = "HTML",       Icon = "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" },
                 new Skill { SkillId = 11, Name = "CSS",        Icon = "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" },
-                new Skill { SkillId = 12, Name = "Docker",     Icon = "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-1024.png" },
+                new Skill { SkillId = 12, Name = "Docker",     Icon = "https://files.brandlogos.net/svg/WMXi7xYVyY/docker-logo-nczdyyGg_brandlogos.net.svg" },
                 new Skill { SkillId = 13, Name = "Git",        Icon = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg" },
                 new Skill { SkillId = 14, Name = "Azure",      Icon = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" }
             );
