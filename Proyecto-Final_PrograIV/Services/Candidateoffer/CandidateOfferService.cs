@@ -69,21 +69,5 @@ namespace Proyecto_Final_PrograIV.Services.Candidateoffer
 
             return offers;
         }
-
-        public CandidateOffer UpdateCandidateOffer(int id, CandidateOffer candidateOffer)
-        {
-            CandidateOffer updateCandidateOffer = _dbContext.CandidateOffers.Find(id);
-            if (updateCandidateOffer == null)
-            {
-                throw new Exception("Candidate not found");
-            }
-            else
-            {
-                updateCandidateOffer.Offer = candidateOffer.Offer;
-                updateCandidateOffer.Candidate = candidateOffer.Candidate;
-               
-                return updateCandidateOffer;
-            }
-        }
     }
 }

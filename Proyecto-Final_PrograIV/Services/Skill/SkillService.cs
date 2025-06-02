@@ -27,17 +27,7 @@ namespace Proyecto_Final_PrograIV.Services.SkillsServices
         {
             return _dbContext.Skills.Find(skillId);
         }
-        public Skill UpdateSkill(int id, Skill skill)
-        {
-            Skill skillUpdate = _dbContext.Skills.Find(id);
-
-            skillUpdate.Name = skill.Name;
-           
-            _dbContext.Skills.Update(skillUpdate);
-            _dbContext.SaveChanges();
-
-            return skill;
-        }
+       
         public void DeleteSkill(int id)
         {
             Skill skill = _dbContext.Skills.Find(id);

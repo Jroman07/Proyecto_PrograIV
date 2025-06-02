@@ -27,30 +27,29 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // GET api/<CandidatesController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "CANDIDATE")]
         public Candidate Get(int id)
         {
             return _candidateService.GetCandidateById(id);
         }
 
         [HttpGet("Offers{id}")]
+        [Authorize(Roles = "CANDIDATE")]
         public IEnumerable<Offer> GetOffers(int id)
         {
             return _candidateService.GetOffersByCandidate(id);
         }
         [HttpGet("Skills{id}")]
+        [Authorize(Roles = "CANDIDATE")]
         public IEnumerable<Skill> GetSkills(int id)
         {
             return _candidateService.GetSkillByCandidate(id);
         }
 
-        [HttpGet("search")]
-        public IEnumerable<Candidate> Get([FromQuery] string? name)
-        {
-            return _candidateService.GetCandidatesByName(name);
-        }
 
         // POST api/<CandidatesController>
         [HttpPost]
+        
         public ActionResult<Candidate>  Post([FromBody] Candidate candidate)
         {
             var result = _candidateService.AddCandidate(candidate);
@@ -61,15 +60,9 @@ namespace Proyecto_Final_PrograIV.Controllers
             return Ok(result);
         }
 
-        // PUT api/<CandidatesController>/5
-        [HttpPut("{id}")]
-        public Candidate Put(int id, [FromBody] Candidate candidate)
-        {
-            return _candidateService.UpdateCandidate(id, candidate);
-        }
-
         // DELETE api/<CandidatesController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "CANDIDATE")]
         public void Delete(int id)
         {
             _candidateService.DeleteCandidate(id);

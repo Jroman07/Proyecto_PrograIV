@@ -20,14 +20,16 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // 🔹 Semilla de compañías
+
+            //  preloaded companies 
             modelBuilder.Entity<Company>().HasData(
                 new Company { CompanyId = 1, Name = "Innowise", Email = "contact@innowise.com", WebSite = "https://innowise.com/es/tecnologias/desarrollo-dot-net/" },
                 new Company { CompanyId = 2, Name = "TURING", Email = "contact@turing.com", WebSite = "https://www.turing.com/es/jobs/remote-react-js-developer" },
                 new Company { CompanyId = 3, Name = "Parallel Devs", Email = "info@paralleldevs.com", WebSite = "https://www.paralleldevs.com/" }
             );
 
-            // 🔹 Semilla de habilidades
+
+            //  preloaded skills
             modelBuilder.Entity<Skill>().HasData(
                 new Skill { SkillId = 1,  Name = "C#",         Icon = "https://www.svgrepo.com/show/452184/csharp.svg" },
                 new Skill { SkillId = 2,  Name = "SQL",        Icon = "https://www.svgrepo.com/show/331761/sql-database-sql-azure.svg" },
@@ -45,7 +47,8 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new Skill { SkillId = 14, Name = "Azure",      Icon = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" }
             );
 
-            // 🔹 Semilla de ofertas
+
+            //  preloaded offers 
             modelBuilder.Entity<Offer>().HasData(
                 new Offer { OfferId = 1, Job = "QA", Description = "Revisión", CompanyId = 2 },
                 new Offer { OfferId = 2, Job = "Desarrollo web", Description = "Desarrollar sistemas", CompanyId = 1 },
@@ -59,43 +62,35 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new Offer { OfferId = 10, Job = "Soporte Técnico", Description = "Atención a usuarios", CompanyId = 3 }
             );
 
-            // 🔹 Relación Oferta-Habilidad (OfferSkill)
-            modelBuilder.Entity<OfferSkill>().HasData(
-                new OfferSkill { Id = 1, OfferId = 1, SkillId = 2 }, // QA - SQL
-                new OfferSkill { Id = 2, OfferId = 1, SkillId = 3 }, // QA - Nest
 
-                new OfferSkill { Id = 3, OfferId = 2, SkillId = 1 }, // Desarrollo web - C#
+            //  preloaded skills-offers 
+            modelBuilder.Entity<OfferSkill>().HasData(
+                new OfferSkill { Id = 1, OfferId = 1, SkillId = 2 },
+                new OfferSkill { Id = 2, OfferId = 1, SkillId = 3 }, 
+                new OfferSkill { Id = 3, OfferId = 2, SkillId = 1 }, 
                 new OfferSkill { Id = 4, OfferId = 2, SkillId = 2 },
                 new OfferSkill { Id = 5, OfferId = 2, SkillId = 3 },
-
-                new OfferSkill { Id = 6, OfferId = 3, SkillId = 1 }, // Backend - C#
-                new OfferSkill { Id = 7, OfferId = 3, SkillId = 8 }, // Backend - Node.js
-                new OfferSkill { Id = 8, OfferId = 3, SkillId = 12 }, // Docker
-
-                new OfferSkill { Id = 9, OfferId = 4, SkillId = 14 }, // Gerente - Azure
-                new OfferSkill { Id = 10, OfferId = 4, SkillId = 13 }, // Git
-
-                new OfferSkill { Id = 11, OfferId = 5, SkillId = 7 }, // Frontend - React
-                new OfferSkill { Id = 12, OfferId = 5, SkillId = 10 }, // HTML
-                new OfferSkill { Id = 13, OfferId = 5, SkillId = 11 }, // CSS
-
-                new OfferSkill { Id = 14, OfferId = 6, SkillId = 12 }, // DevOps - Docker
-                new OfferSkill { Id = 15, OfferId = 6, SkillId = 13 }, // Git
-                new OfferSkill { Id = 16, OfferId = 6, SkillId = 14 }, // Azure
-
-                new OfferSkill { Id = 17, OfferId = 7, SkillId = 2 }, // BD - SQL
-                new OfferSkill { Id = 18, OfferId = 7, SkillId = 4 }, // BD - MySQL
-
-                new OfferSkill { Id = 19, OfferId = 8, SkillId = 5 }, // Mobile - JS
-                new OfferSkill { Id = 20, OfferId = 8, SkillId = 6 }, // TS
-                new OfferSkill { Id = 21, OfferId = 8, SkillId = 7 }, // React
-
-                new OfferSkill { Id = 22, OfferId = 9, SkillId = 1 }, // Fullstack
+                new OfferSkill { Id = 6, OfferId = 3, SkillId = 1 }, 
+                new OfferSkill { Id = 7, OfferId = 3, SkillId = 8 }, 
+                new OfferSkill { Id = 8, OfferId = 3, SkillId = 12 }, 
+                new OfferSkill { Id = 9, OfferId = 4, SkillId = 14 }, 
+                new OfferSkill { Id = 10, OfferId = 4, SkillId = 13 }, 
+                new OfferSkill { Id = 11, OfferId = 5, SkillId = 7 },
+                new OfferSkill { Id = 12, OfferId = 5, SkillId = 10 }, 
+                new OfferSkill { Id = 13, OfferId = 5, SkillId = 11 }, 
+                new OfferSkill { Id = 14, OfferId = 6, SkillId = 12 }, 
+                new OfferSkill { Id = 15, OfferId = 6, SkillId = 13 }, 
+                new OfferSkill { Id = 16, OfferId = 6, SkillId = 14 }, 
+                new OfferSkill { Id = 17, OfferId = 7, SkillId = 2 }, 
+                new OfferSkill { Id = 18, OfferId = 7, SkillId = 4 }, 
+                new OfferSkill { Id = 19, OfferId = 8, SkillId = 5 }, 
+                new OfferSkill { Id = 20, OfferId = 8, SkillId = 6 }, 
+                new OfferSkill { Id = 21, OfferId = 8, SkillId = 7 }, 
+                new OfferSkill { Id = 22, OfferId = 9, SkillId = 1 }, 
                 new OfferSkill { Id = 23, OfferId = 9, SkillId = 7 },
                 new OfferSkill { Id = 24, OfferId = 9, SkillId = 8 },
-
-                new OfferSkill { Id = 25, OfferId = 10, SkillId = 9 }, // Soporte - Python
-                new OfferSkill { Id = 26, OfferId = 10, SkillId = 13 } // Git
+                new OfferSkill { Id = 25, OfferId = 10, SkillId = 9 }, 
+                new OfferSkill { Id = 26, OfferId = 10, SkillId = 13 } 
             );
 
 
@@ -107,7 +102,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Offer * - * Skill (via OfferSkill)
             modelBuilder.Entity<OfferSkill>()
-                .HasKey(cs => cs.Id); // Composite key
+                .HasKey(cs => cs.Id); 
 
             modelBuilder.Entity<OfferSkill>()
                 .Property(cs => cs.Id)
@@ -125,7 +120,7 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             // Candidate * - * Offer (via CandidateOffer)
             modelBuilder.Entity<CandidateOffer>()
-                .HasKey(cs => cs.Id); // Composite key
+                .HasKey(cs => cs.Id); 
 
             modelBuilder.Entity<CandidateOffer>()
                 .Property(cs => cs.Id)

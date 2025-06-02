@@ -61,31 +61,16 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
         public Candidate GetCandidateById(int Id)
         {
-            Candidate candidate = _dbContext.Candidates
+            Candidate? candidate = _dbContext.Candidates
                 .Include(x => x.CandidateSkills)
-                .FirstOrDefault(c => c.CandidateId == Id); // Use FirstOrDefault instead of Find
+                .FirstOrDefault(c => c.CandidateId == Id); 
 
             if (candidate == null)
             {
-                return null; // Return null if candidate is not found
+                return null;
             }
             return candidate;
         }
-
-        public List<Candidate> GetCandidatesByName(string name)
-        {
-
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return _dbContext.Candidates.ToList();
-            }
-
-            return _dbContext.Candidates
-                .Where(c => c.Name.ToLower().Contains(name.ToLower()))
-                .ToList();
-
-        }
-
         public List<Offer> GetOffersByCandidate(int Id)
         {
             List<Offer> offers = _dbContext.Candidates
@@ -108,24 +93,6 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
             return skills;
         }
-        public Candidate UpdateCandidate(int Id, Candidate candidate)
-        {
-            Candidate updateCandidate = _dbContext.Candidates.Find(Id);
-            if (updateCandidate != null)
-            {
-                updateCandidate.Name = candidate.Name;
-                updateCandidate.Surname1 = candidate.Surname1;
-                updateCandidate.Surname2 = candidate.Surname2;
-                updateCandidate.Email = candidate.Email;
-                updateCandidate.Password = candidate.Password;
-                _dbContext.SaveChanges();
-                return updateCandidate;
-
-            }
-            else
-            {
-                throw new Exception("Candidate not found");
-            }
-        }
+     
     }
 }

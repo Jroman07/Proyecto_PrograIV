@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Proyecto_Final_PrograIV.Entities;
@@ -12,8 +6,9 @@ using Proyecto_Final_PrograIV.Services;
 
 namespace Proyecto_Final_PrograIV.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
+    [Authorize(Roles = "CANDIDATE")]
     public class OfferSkillsController : ControllerBase
     {
         private readonly IOfferSkillService _offerSkillService;

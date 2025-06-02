@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services;
 using Proyecto_Final_PrograIV.Services.CompanyService;
@@ -9,6 +10,7 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "CANDIDATE")]
     public class CompaniesController : ControllerBase
     {
         private readonly ICompanyService _companyService;

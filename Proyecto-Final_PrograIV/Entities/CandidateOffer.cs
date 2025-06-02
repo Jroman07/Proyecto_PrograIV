@@ -12,6 +12,5 @@ namespace Proyecto_Final_PrograIV.Entities
         public int OfferId { get; set; }
         [JsonIgnore]
         public Offer? Offer { get; set; }
-
     }
 }

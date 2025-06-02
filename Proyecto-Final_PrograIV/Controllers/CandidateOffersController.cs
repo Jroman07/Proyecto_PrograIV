@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services.Candidateoffer;
 
@@ -6,8 +7,9 @@ using Proyecto_Final_PrograIV.Services.Candidateoffer;
 
 namespace Proyecto_Final_PrograIV.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(Roles = "CANDIDATE")]
     public class CandidateOffersController : ControllerBase
     {
         private readonly ICandidateOfferService _CandidateOfferService;
@@ -41,13 +43,6 @@ namespace Proyecto_Final_PrograIV.Controllers
                 return Conflict("El candidato ya existe.");
             }
             return response;
-        }
-
-        // PUT api/<CandidateOfferByIdController>/5
-        [HttpPut("{id}")]
-        public CandidateOffer Put(int id, [FromBody] CandidateOffer candidateOffer)
-        {
-            return _CandidateOfferService.UpdateCandidateOffer(id, candidateOffer);
         }
 
         // DELETE api/<CandidateOfferByIdController>/5
