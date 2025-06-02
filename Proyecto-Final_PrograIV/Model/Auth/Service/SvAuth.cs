@@ -41,7 +41,7 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
         {
             if(auth != null)
             {
-                Candidate Data = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
+                Candidate? Data = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
                 if (Data == null)
                 {
                     return null; 
