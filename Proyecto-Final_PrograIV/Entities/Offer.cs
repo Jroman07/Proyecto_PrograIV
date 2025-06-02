@@ -6,12 +6,10 @@ namespace Proyecto_Final_PrograIV.Entities
     {
         [JsonIgnore]
         public int OfferId { get; set; }
-        // Clave Foránea
         public int CompanyId { get; set; }
-        public string Job { get; set; }
-        public string Description { get; set; }
+        public string? Job { get; set; }
+        public string? Description { get; set; }
 
-        // Propiedad de navegación (relación con Empresa)
         [JsonIgnore]
         public Company? Company { get; set; }
         [JsonIgnore]

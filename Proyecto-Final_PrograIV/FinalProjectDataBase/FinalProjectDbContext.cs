@@ -28,7 +28,6 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new Company { CompanyId = 3, Name = "Parallel Devs", Email = "info@paralleldevs.com", WebSite = "https://www.paralleldevs.com/" }
             );
 
-
             //  preloaded skills
             modelBuilder.Entity<Skill>().HasData(
                 new Skill { SkillId = 1,  Name = "C#",         Icon = "https://www.svgrepo.com/show/452184/csharp.svg" },
@@ -47,7 +46,6 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new Skill { SkillId = 14, Name = "Azure",      Icon = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" }
             );
 
-
             //  preloaded offers 
             modelBuilder.Entity<Offer>().HasData(
                 new Offer { OfferId = 1, Job = "QA", Description = "Revisión", CompanyId = 2 },
@@ -61,7 +59,6 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new Offer { OfferId = 9, Job = "Fullstack Developer", Description = "Frontend y Backend", CompanyId = 2 },
                 new Offer { OfferId = 10, Job = "Soporte Técnico", Description = "Atención a usuarios", CompanyId = 3 }
             );
-
 
             //  preloaded skills-offers 
             modelBuilder.Entity<OfferSkill>().HasData(
@@ -92,7 +89,6 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 new OfferSkill { Id = 25, OfferId = 10, SkillId = 9 }, 
                 new OfferSkill { Id = 26, OfferId = 10, SkillId = 13 } 
             );
-
 
             // Company 1 - * Offer
             modelBuilder.Entity<Offer>()
@@ -153,9 +149,6 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
                 .HasOne(co => co.Candidate)
                 .WithMany(o => o.CandidateSkills)
                 .HasForeignKey(co => co.CandidateId);
-
         }
-
-
     }
 }

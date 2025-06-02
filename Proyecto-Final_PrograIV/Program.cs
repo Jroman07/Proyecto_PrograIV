@@ -30,16 +30,16 @@ builder.Services.AddControllers()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-                      });
+       policy =>
+       {
+           policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+       });
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.TokenValidationParameters = new TokenValidationParameters
+        options.TokenValidationParameters = new TokenValidationParameters   
         {
             ValidateIssuer = true,
             ValidateAudience = true,
@@ -60,7 +60,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -76,12 +75,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
-// 🌱 Crear DB y aplicar seed (HasData)
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<FinalProjectDbContext>();
-    context.Database.EnsureCreated(); // Carga datos de HasData
+    context.Database.EnsureCreated(); 
 }
 
 app.Run();

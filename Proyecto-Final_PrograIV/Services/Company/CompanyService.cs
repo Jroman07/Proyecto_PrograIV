@@ -21,7 +21,7 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
         }
         public void DeleteCompanyById(int id)
         {
-            Company DeleteCompany = _dbContext.Companies.Find(id);
+            Company? DeleteCompany = _dbContext.Companies.Find(id);
 
             if (DeleteCompany != null)
             {
@@ -39,18 +39,18 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
             return _dbContext.Companies.Include(x => x.Offers).ToList();
         }
 
-        public List<Company> GetCompanyByName(string companyName)
+        /*public List<Company> GetCompanyByName(string companyName)
         {
             if (string.IsNullOrWhiteSpace(companyName))
             {
                 return _dbContext.Companies.ToList();
             }
             return _dbContext.Companies.Where(company => company.Name.ToLower().Contains(companyName.ToLower())).ToList();
-        }
+        }*/
 
         public Company GettCompanyById(int id)
         {
-            Company company = _dbContext.Companies.Find(id);
+            Company? company = _dbContext.Companies.Find(id);
 
             if (company == null)
             {
@@ -61,7 +61,7 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
 
         public Company UpdateCompany(int id, Company company)
         {
-            Company updateCompany = _dbContext.Companies.Find(id);
+            Company? updateCompany = _dbContext.Companies.Find(id);
             if (updateCompany == null)
             {
                 throw new Exception("Candidate not found");

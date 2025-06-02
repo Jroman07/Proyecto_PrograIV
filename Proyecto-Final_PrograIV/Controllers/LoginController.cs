@@ -26,7 +26,7 @@ namespace Proyecto_Final_PrograIV.Controllers
             var result = _authService.Authenticate(auth);
             if (result == null)
             {
-                return Unauthorized(); // o BadRequest("Credenciales inválidas");
+                return Unauthorized();
             }
             return Ok(result);
         }

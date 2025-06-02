@@ -37,7 +37,6 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
             }
                 
         }
-
         public void DeleteCandidate(int Id)
         {
             Candidate DeleteCandidate = _dbContext.Candidates.Find(Id);
@@ -52,8 +51,6 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
                 throw new Exception("Candidate not found");
             }
         }
-
-
         public List<Candidate> GetAllCandidates()
         {
             return _dbContext.Candidates.ToList();

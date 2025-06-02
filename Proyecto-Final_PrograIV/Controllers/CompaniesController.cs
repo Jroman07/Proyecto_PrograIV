@@ -32,11 +32,11 @@ namespace Proyecto_Final_PrograIV.Controllers
         }
         
 
-        [HttpGet("search")]
+        /*[HttpGet("search")]
         public IEnumerable<Company> Get([FromQuery]string?name)
         {
             return _companyService.GetCompanyByName(name);
-        }
+        }*/
 
         // POST api/<CompanyController>
         [HttpPost]
