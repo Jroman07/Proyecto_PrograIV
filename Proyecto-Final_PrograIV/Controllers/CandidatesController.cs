@@ -43,7 +43,7 @@ namespace Proyecto_Final_PrograIV.Controllers
         [Authorize(Roles = "CANDIDATE")]
         public IEnumerable<Skill> GetSkills(int id)
         {
-            return _candidateService.GetSkillByCandidate(id);
+            return _candidateService.GetSkillsByCandidate(id);
         }
 
 

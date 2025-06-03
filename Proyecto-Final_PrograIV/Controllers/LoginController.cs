@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Model.Auth;
 using Proyecto_Final_PrograIV.Model.Auth.Service;
 

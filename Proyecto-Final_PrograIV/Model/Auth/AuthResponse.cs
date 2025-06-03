@@ -1,4 +1,4 @@
-﻿namespace Proyecto_Final_PrograIV.Entities
+﻿namespace Proyecto_Final_PrograIV.Model.Auth
 {
     public class AuthResponse
     {

@@ -51,6 +51,8 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
                 throw new Exception("Candidate not found");
             }
         }
+
+
         public List<Candidate> GetAllCandidates()
         {
             return _dbContext.Candidates.ToList();
@@ -79,11 +81,12 @@ namespace Proyecto_Final_PrograIV.Services.CandidateServices
 
             return offers;
         }
-       public List<Skill> GetSkillByCandidate(int Id)
+
+        public List<Skill> GetSkillsByCandidate(int Id)
         {
             List<Skill> skills = _dbContext.Candidates
-                .Include(c=>c.CandidateSkills).
-                ThenInclude(co => co.Skill)
+                .Include(c=>c.CandidateSkills)
+                .ThenInclude(co => co.Skill)
                 .Where(x=>x.CandidateId==Id)
                 .SelectMany(c=>c.CandidateSkills
                 .Select(co => co.Skill)).ToList();

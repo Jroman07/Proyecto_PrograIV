@@ -59,7 +59,8 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
                         return new AuthResponse
                         {
                             token = token,
-                            candidateId = Data.CandidateId                      };
+                            candidateId = Data.CandidateId                      
+                        };
                     }
                 }
             }
