@@ -38,16 +38,6 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
         {
             return _dbContext.Companies.Include(x => x.Offers).ToList();
         }
-
-        /*public List<Company> GetCompanyByName(string companyName)
-        {
-            if (string.IsNullOrWhiteSpace(companyName))
-            {
-                return _dbContext.Companies.ToList();
-            }
-            return _dbContext.Companies.Where(company => company.Name.ToLower().Contains(companyName.ToLower())).ToList();
-        }*/
-
         public Company GettCompanyById(int id)
         {
             Company? company = _dbContext.Companies.Find(id);
@@ -58,7 +48,6 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
             }
             return company;
         }
-
         public Company UpdateCompany(int id, Company company)
         {
             Company? updateCompany = _dbContext.Companies.Find(id);
