@@ -20,7 +20,7 @@ namespace Proyecto_Final_PrograIV.Controllers
 
         // POST api/<AuthController>
         [HttpPost]
-        public ActionResult<AuthResponse> Post([FromBody] Auth auth )
+        public ActionResult<string> Post([FromBody] Auth auth )
         {
             var result = _authService.Authenticate(auth);
             if (result == null)

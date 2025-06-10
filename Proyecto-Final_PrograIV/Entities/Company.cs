@@ -9,6 +9,7 @@ namespace Proyecto_Final_PrograIV.Entities
         public string? Name { get; set; }
         public string? WebSite { get; set; }
         public string? Email { get; set; }
+        public string? Password { get; set; }
 
         // Relación inversa: Una empresa tiene muchas ofertas
         [JsonIgnore]

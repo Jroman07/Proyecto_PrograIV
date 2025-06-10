@@ -2,6 +2,6 @@
 {
     public interface ISvAuth
     {
-        public AuthResponse Authenticate(Auth auth);
+        public string Authenticate(Auth auth);
     }
 }

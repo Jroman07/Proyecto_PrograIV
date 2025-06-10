@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Final_PrograIV.Entities;
 using Proyecto_Final_PrograIV.Services.SkillsServices;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "CANDIDATE")]
+    [Authorize]
     public class SkillsController : ControllerBase
     {
         private readonly ISkillService _skillService;

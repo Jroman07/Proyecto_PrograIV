@@ -40,11 +40,11 @@ namespace Proyecto_Final_PrograIV.Services.CompanyService
         }
         public Company GettCompanyById(int id)
         {
-            Company? company = _dbContext.Companies.Find(id);
+            Company? company = _dbContext.Companies.Include(x => x.Offers).FirstOrDefault(c => c.CompanyId == id);
 
             if (company == null)
             {
-                throw new Exception("Compnay not found");
+                return null;
             }
             return company;
         }

@@ -23,9 +23,9 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 
             //  preloaded companies 
             modelBuilder.Entity<Company>().HasData(
-                new Company { CompanyId = 1, Name = "Innowise", Email = "contact@innowise.com", WebSite = "https://innowise.com/es/tecnologias/desarrollo-dot-net/" },
-                new Company { CompanyId = 2, Name = "TURING", Email = "contact@turing.com", WebSite = "https://www.turing.com/es/jobs/remote-react-js-developer" },
-                new Company { CompanyId = 3, Name = "Parallel Devs", Email = "info@paralleldevs.com", WebSite = "https://www.paralleldevs.com/" }
+                new Company { CompanyId = 1, Name = "Innowise", Email = "contact@innowise.com", WebSite = "https://innowise.com/es/tecnologias/desarrollo-dot-net/", Password = "1234" },
+                new Company { CompanyId = 2, Name = "TURING", Email = "contact@turing.com", WebSite = "https://www.turing.com/es/jobs/remote-react-js-developer", Password = "123" },
+                new Company { CompanyId = 3, Name = "Parallel Devs", Email = "info@paralleldevs.com", WebSite = "https://www.paralleldevs.com/", Password = "12345" }
             );
 
             //  preloaded skills

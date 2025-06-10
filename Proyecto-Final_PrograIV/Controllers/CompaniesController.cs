@@ -10,7 +10,7 @@ namespace Proyecto_Final_PrograIV.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "CANDIDATE")]
+    [Authorize]
     public class CompaniesController : ControllerBase
     {
         private readonly ICompanyService _companyService;

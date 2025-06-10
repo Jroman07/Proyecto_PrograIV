@@ -4,6 +4,7 @@ using Proyecto_Final_PrograIV.FinalProjectDataBase;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Proyecto_Final_PrograIV.Model.Auth.Service
 {
@@ -37,32 +38,44 @@ namespace Proyecto_Final_PrograIV.Model.Auth.Service
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public AuthResponse Authenticate(Auth auth)
+        public string Authenticate(Auth auth)
         {
             if(auth != null)
             {
-                Candidate? Data = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
-                if (Data == null)
+                Candidate? candidate = _dbContext.Candidates.Where(x => x.Email == auth.Email).FirstOrDefault();
+                Company? company = _dbContext.Companies.Where(x => x.Email == auth.Email).FirstOrDefault();
+
+                if (candidate != null)
                 {
-                    return null; 
-                }
-                else
-                {
-                    if (Data.Password != auth.Password)
+                    if (candidate.Password == auth.Password)
                     {
-                        return null;
+                        var token = GenerateJwtToken(candidate.CandidateId, candidate.Email, "CANDIDATE");
+
+                        return token;
                     }
                     else
                     {
-                        var token = GenerateJwtToken(Data.CandidateId, Data.Email, "CANDIDATE");
-
-                        return new AuthResponse
-                        {
-                            token = token,
-                            candidateId = Data.CandidateId                      
-                        };
+                        return null;
                     }
                 }
+                else if (company != null)
+                {
+                    if (company.Password == auth.Password)
+                    {
+                        var token = GenerateJwtToken(company.CompanyId, company.Email, "COMPANY");
+
+                        return token;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+
             }
             return null;
           
