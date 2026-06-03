@@ -8,12 +8,16 @@ using Proyecto_Final_PrograIV.Services.Candidateoffer;
 using Proyecto_Final_PrograIV.Services.CandidateServices;
 using Proyecto_Final_PrograIV.Services.CompanyService;
 using Proyecto_Final_PrograIV.Services.SkillsServices;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<FinalProjectDbContext>();
+//
+builder.Services.AddDbContext<FinalProjectDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//
 builder.Services.AddScoped<ICandidateService, CandidateService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<ISkillService, SkillService>();
@@ -78,7 +82,15 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<FinalProjectDbContext>();
-    context.Database.EnsureCreated(); 
+    context.Database.Migrate(); 
 }
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "UP",
+    service = "Sistema de ofertas laborales",
+    environment = "Windows",
+    timestamp = DateTime.UtcNow
+}));
 
 app.Run();

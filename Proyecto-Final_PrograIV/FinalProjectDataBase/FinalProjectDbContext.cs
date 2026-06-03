@@ -5,9 +5,9 @@ namespace Proyecto_Final_PrograIV.FinalProjectDataBase
 {
     public class FinalProjectDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public FinalProjectDbContext(DbContextOptions<FinalProjectDbContext> options)
+            : base(options)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "FinalProjectDataBase");
         }
 
         public DbSet<Candidate> Candidates { get; set; }
